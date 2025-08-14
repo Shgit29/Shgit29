@@ -25,9 +25,9 @@ Building scalable full-stack web apps with MERN and AI integration, delivering c
 ### 🚀 My Stats
 
 <div align="center">
-  <img src="https://streak-stats.demolab.com?user=Shgit29&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5&order=3" width="300" height="220" alt="streak graph" />
-  <img src="https://github-readme-stats.vercel.app/api?username=Shgit29&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" width="300" height="220" alt="stats graph" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Shgit29&locale=en&hide_title=false&layout=compact&card_width=300&langs_count=5&theme=dracula&hide_border=false" width="300" height="220" alt="languages graph" />
+  <img src="https://streak-stats.demolab.com?user=Shgit29&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5&order=3" width="400" height="300" alt="streak graph" />
+  <img src="https://github-readme-stats.vercel.app/api?username=Shgit29&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" width="400" height="300" alt="stats graph" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Shgit29&locale=en&hide_title=false&layout=compact&card_width=400&langs_count=5&theme=dracula&hide_border=false" width="400" height="300" alt="languages graph" />
 </div>
 
 ---
