@@ -24,11 +24,19 @@ Building scalable full-stack web apps with MERN and AI integration, delivering c
 
 ### 🚀 My Stats
 
-<div align="center">
-  <img src="https://streak-stats.demolab.com?user=Shgit29&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5&order=3" width="400" height="300" style="vertical-align:top" alt="streak graph" />
-  <img src="https://github-readme-stats.vercel.app/api?username=Shgit29&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" width="400" height="300" style="vertical-align:top" alt="stats graph" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Shgit29&locale=en&hide_title=false&layout=compact&card_width=400&langs_count=5&theme=dracula&hide_border=false" width="400" height="300" style="vertical-align:top" alt="languages graph" />
-</div>
+<table align="center">
+  <tr>
+    <td>
+      <img src="https://streak-stats.demolab.com?user=Shgit29&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5&order=3" width="400" alt="streak graph" />
+    </td>
+    <td>
+      <img src="https://github-readme-stats.vercel.app/api?username=Shgit29&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" width="400" alt="stats graph" />
+    </td>
+    <td>
+      <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Shgit29&locale=en&hide_title=false&layout=compact&card_width=400&langs_count=5&theme=dracula&hide_border=false" width="400" alt="languages graph" />
+    </td>
+  </tr>
+</table>
 
 ---
 
