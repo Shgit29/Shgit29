@@ -159,7 +159,6 @@ function svg(theme, data, loc, asciiLines) {
   const c = dark
     ? { page: "#0d1117", panel: "#151b23", border: "#222b36", text: "#c9d1d9", muted: "#748496", value: "#a8d8ff", accent: "#ff9d3d", green: "#39d353", red: "#ff5c57" }
     : { page: "#f3f4f6", panel: "#ffffff", border: "#d8dee4", text: "#30363d", muted: "#8c959f", value: "#0969da", accent: "#bc4c00", green: "#1a7f37", red: "#cf222e" };
-  const contributions = data.contributions;
   const row = (y, label, value, valueClass = "value") => {
     const dots = "·".repeat(Math.max(2, 62 - label.length - String(value).length));
     return `<text x="448" y="${y}" class="row"><tspan class="key">${xml(label)}:</tspan><tspan class="dots"> ${dots} </tspan><tspan class="${valueClass}">${xml(value)}</tspan></text>`;
@@ -176,21 +175,14 @@ function svg(theme, data, loc, asciiLines) {
   ${row(115,"Specialty","MERN Stack and AI Integration")}
   ${row(139,"Company","Layer7 Solutions")}
   ${row(163,"Education","BS Computer Science — GIKI")}
-  ${row(187,"Location","Lahore, Pakistan")}
-  ${section(226,"Current Work")}
-  ${row(254,"Project","NexCubator")}
-  ${row(278,"Learning","AWS Solutions Architect")}
-  ${row(302,"Availability","Backend and Full-Stack opportunities")}
-  ${row(326,"Open Source","Prisma ORM, PostgreSQL, Chromium")}
-  ${row(350,"Interests","Databases, distributed systems, cloud")}
-  ${section(389,"GitHub Stats")}
-  ${row(417,"Public Repos",fmt(data.publicRepos))}
-  ${row(441,"Stars Received",fmt(data.stars))}
-  ${row(465,"Default-Branch Commits",fmt(data.totalCommits))}
-  ${row(489,`${data.year} Contributions`,`${fmt(contributions.totalCommitContributions)} commits · ${fmt(contributions.totalPullRequestContributions)} PRs · ${fmt(contributions.totalIssueContributions)} issues`)}
-  ${row(513,"PR Reviews",fmt(contributions.totalPullRequestReviewContributions))}
-  ${row(537,"Account Age",`${fmt(data.accountYears)} years`)}
-  <text x="448" y="561" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">${fmt(loc.added)}</tspan><tspan class="green">++</tspan><tspan class="value"> / ${fmt(loc.removed)}</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
+  ${section(211,"Current Work")}
+  ${row(239,"Availability","Backend and Full-Stack opportunities")}
+  ${row(263,"Open Source","Prisma ORM")}
+  ${row(287,"Interests","Databases, distributed systems, cloud")}
+  ${section(332,"GitHub Stats")}
+  ${row(360,"Default-Branch Commits",fmt(data.totalCommits))}
+  ${row(384,"Account Age",`${fmt(data.accountYears)} years`)}
+  <text x="448" y="408" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">${fmt(loc.added)}</tspan><tspan class="green">++</tspan><tspan class="value"> / ${fmt(loc.removed)}</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
 </svg>\n`;
 }
 
