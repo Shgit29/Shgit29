@@ -8,19 +8,12 @@
   <text x="448" y="115" class="row"><tspan class="key">Specialty:</tspan><tspan class="dots"> ························ </tspan><tspan class="value">MERN Stack and AI Integration</tspan></text>
   <text x="448" y="139" class="row"><tspan class="key">Company:</tspan><tspan class="dots"> ······································· </tspan><tspan class="value">Layer7 Solutions</tspan></text>
   <text x="448" y="163" class="row"><tspan class="key">Education:</tspan><tspan class="dots"> ··························· </tspan><tspan class="value">BS Computer Science — GIKI</tspan></text>
-  <text x="448" y="187" class="row"><tspan class="key">Location:</tspan><tspan class="dots"> ······································ </tspan><tspan class="value">Lahore, Pakistan</tspan></text>
-  <text x="430" y="226" class="section">- Current Work  ─────────────────────────────────────────────────</text>
-  <text x="448" y="254" class="row"><tspan class="key">Project:</tspan><tspan class="dots"> ············································· </tspan><tspan class="value">NexCubator</tspan></text>
-  <text x="448" y="278" class="row"><tspan class="key">Learning:</tspan><tspan class="dots"> ······························· </tspan><tspan class="value">AWS Solutions Architect</tspan></text>
-  <text x="448" y="302" class="row"><tspan class="key">Availability:</tspan><tspan class="dots"> ·············· </tspan><tspan class="value">Backend and Full-Stack opportunities</tspan></text>
-  <text x="448" y="326" class="row"><tspan class="key">Open Source:</tspan><tspan class="dots"> ··················· </tspan><tspan class="value">Prisma ORM, PostgreSQL, Chromium</tspan></text>
-  <text x="448" y="350" class="row"><tspan class="key">Interests:</tspan><tspan class="dots"> ················ </tspan><tspan class="value">Databases, distributed systems, cloud</tspan></text>
-  <text x="430" y="389" class="section">- GitHub Stats  ─────────────────────────────────────────────────</text>
-  <text x="448" y="417" class="row"><tspan class="key">Public Repos:</tspan><tspan class="dots"> ················································ </tspan><tspan class="value">13</tspan></text>
-  <text x="448" y="441" class="row"><tspan class="key">Stars Received:</tspan><tspan class="dots"> ··············································· </tspan><tspan class="value">0</tspan></text>
-  <text x="448" y="465" class="row"><tspan class="key">Default-Branch Commits:</tspan><tspan class="dots"> ····································· </tspan><tspan class="value">109</tspan></text>
-  <text x="448" y="489" class="row"><tspan class="key">2026 Contributions:</tspan><tspan class="dots"> ··············· </tspan><tspan class="value">22 commits · 4 PRs · 0 issues</tspan></text>
-  <text x="448" y="513" class="row"><tspan class="key">PR Reviews:</tspan><tspan class="dots"> ··················································· </tspan><tspan class="value">0</tspan></text>
-  <text x="448" y="537" class="row"><tspan class="key">Account Age:</tspan><tspan class="dots"> ············································ </tspan><tspan class="value">3 years</tspan></text>
-  <text x="448" y="561" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">2,321,493</tspan><tspan class="green">++</tspan><tspan class="value"> / 15,245</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
+  <text x="430" y="211" class="section">- Current Work  ─────────────────────────────────────────────────</text>
+  <text x="448" y="239" class="row"><tspan class="key">Availability:</tspan><tspan class="dots"> ·············· </tspan><tspan class="value">Backend and Full-Stack opportunities</tspan></text>
+  <text x="448" y="263" class="row"><tspan class="key">Open Source:</tspan><tspan class="dots"> ········································· </tspan><tspan class="value">Prisma ORM</tspan></text>
+  <text x="448" y="287" class="row"><tspan class="key">Interests:</tspan><tspan class="dots"> ················ </tspan><tspan class="value">Databases, distributed systems, cloud</tspan></text>
+  <text x="430" y="332" class="section">- GitHub Stats  ─────────────────────────────────────────────────</text>
+  <text x="448" y="360" class="row"><tspan class="key">Default-Branch Commits:</tspan><tspan class="dots"> ····································· </tspan><tspan class="value">110</tspan></text>
+  <text x="448" y="384" class="row"><tspan class="key">Account Age:</tspan><tspan class="dots"> ············································ </tspan><tspan class="value">3 years</tspan></text>
+  <text x="448" y="408" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">2,321,501</tspan><tspan class="green">++</tspan><tspan class="value"> / 15,261</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
 </svg>
