@@ -4,7 +4,7 @@
 // approximation: squash merges, changed identities, rewritten history, shallow
 // clones, and private repositories all affect what Git can attribute.
 
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { execFile } from "node:child_process";
@@ -14,9 +14,6 @@ const exec = promisify(execFile);
 const username = process.env.GITHUB_USERNAME?.trim();
 const token = process.env.GITHUB_TOKEN?.trim();
 const preview = process.argv.includes("--preview");
-
-if (!username) throw new Error("GITHUB_USERNAME is required");
-if (!token && !preview) throw new Error("GITHUB_TOKEN is required (or use --preview to validate rendering)");
 
 const split = (value) => (value || "").split(",").map((v) => v.trim().toLowerCase()).filter(Boolean);
 const authorNames = split(process.env.GIT_AUTHOR_NAMES || "Saad Hassan");
@@ -32,6 +29,25 @@ function positiveInt(name, fallback) {
 
 function xml(value) {
   return String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" })[c]);
+}
+
+async function readAsciiArt() {
+  let asciiText;
+  try {
+    asciiText = await readFile("assets/profile-ascii.txt", "utf8");
+  } catch (error) {
+    if (error.code === "ENOENT") throw new Error("assets/profile-ascii.txt is missing.");
+    throw new Error(`Unable to read assets/profile-ascii.txt: ${error.message}`);
+  }
+
+  const lines = asciiText
+    .replace(/\r\n?/g, "\n")
+    .split("\n")
+    .map((line) => line.replace(/[\t ]+$/u, ""));
+
+  while (lines.length > 0 && lines[lines.length - 1].trim() === "") lines.pop();
+  if (lines.length === 0) throw new Error("assets/profile-ascii.txt is empty.");
+  return lines;
 }
 
 const fmt = (n) => new Intl.NumberFormat("en-US").format(n || 0);
@@ -122,7 +138,23 @@ async function calculateLoc(repos) {
   return { added, removed, analysed };
 }
 
-function svg(theme, data, loc) {
+function renderAsciiArt(lines) {
+  const panel = { x: 25, y: 22, width: 385, height: 540 };
+  const widestLine = Math.max(...lines.map((line) => Array.from(line).length), 1);
+  // Monospace glyphs are approximately 0.62em wide. The slightly larger 0.66
+  // factor leaves a safety margin for GitHub's supported fallback fonts.
+  const widthLimitedSize = panel.width / (widestLine * 0.66);
+  const heightLimitedSize = panel.height / (lines.length * 1.2);
+  const fontSize = Math.floor(Math.min(14, widthLimitedSize, heightLimitedSize) * 100) / 100;
+  const lineHeight = Math.floor(fontSize * 1.2 * 100) / 100;
+  const tspans = lines.map((line, index) =>
+    `<tspan x="${panel.x}" dy="${index === 0 ? 0 : lineHeight}">${xml(line)}</tspan>`,
+  ).join("");
+
+  return `<text x="${panel.x}" y="${panel.y + fontSize}" class="ascii" xml:space="preserve" font-size="${fontSize}">${tspans}</text>`;
+}
+
+function svg(theme, data, loc, asciiLines) {
   const dark = theme === "dark";
   const c = dark
     ? { page: "#0d1117", panel: "#151b23", border: "#222b36", text: "#c9d1d9", muted: "#748496", value: "#a8d8ff", accent: "#ff9d3d", green: "#39d353", red: "#ff5c57" }
@@ -133,34 +165,9 @@ function svg(theme, data, loc) {
     return `<text x="448" y="${y}" class="row"><tspan class="key">${xml(label)}:</tspan><tspan class="dots"> ${dots} </tspan><tspan class="${valueClass}">${xml(value)}</tspan></text>`;
   };
   const section = (y, title) => `<text x="430" y="${y}" class="section">- ${xml(title)}  ${"─".repeat(Math.max(3, 61 - title.length))}</text>`;
-  const art = [
-    "             .----------------.",
-    "            / .--------------. \\",
-    "           / /                \\ \\",
-    "          | |    S A A D       | |",
-    "          | |                  | |",
-    "          | |   > build_       | |",
-    "          | |   compiling...   | |",
-    "          | |   [########] ok  | |",
-    "          | |                  | |",
-    "           \\ \\________________/ /",
-    "            '------------------'",
-    "                 _|  |_",
-    "              .-'      '-.",
-    "             /____________\\",
-    "",
-    "       _____                 _",
-    "      / ____|               | |",
-    "     | (___   __ _  __ _  __| |",
-    "      \\___ \\ / _` |/ _` |/ _` |",
-    "      ____) | (_| | (_| | (_| |",
-    "     |_____/ \\__,_|\\__,_|\\__,_|",
-    "",
-    `         ${username.toLowerCase()}@github`,
-  ];
-  const artSvg = art.map((line, index) => `<text x="35" y="${42 + index * 22}" class="ascii">${xml(line)}</text>`).join("");
+  const artSvg = renderAsciiArt(asciiLines);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="584" viewBox="0 0 1080 584" role="img" aria-label="Saad Hassan profile and GitHub statistics in a terminal system-information layout">
-  <style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.ascii{fill:${c.text};font-size:14px;white-space:pre}.row{font-size:16px}.key{fill:${c.accent}}.dots{fill:${c.muted}}.value{fill:${c.value}}.green{fill:${c.green}}.red{fill:${c.red}}.section{fill:${c.text};font-size:16px}</style>
+  <style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.ascii{fill:${c.text};white-space:pre}.row{font-size:16px}.key{fill:${c.accent}}.dots{fill:${c.muted}}.value{fill:${c.value}}.green{fill:${c.green}}.red{fill:${c.red}}.section{fill:${c.text};font-size:16px}</style>
   <rect width="1080" height="584" fill="${c.page}"/><rect x="8" y="7" width="1058" height="570" rx="17" fill="${c.panel}" stroke="${c.border}"/>
   ${artSvg}
   <text x="430" y="39" class="section">${xml(username.toLowerCase())}@github  ${"─".repeat(48)}</text>
@@ -188,11 +195,15 @@ function svg(theme, data, loc) {
 }
 
 async function main() {
+  const asciiLines = await readAsciiArt();
+  if (!username) throw new Error("GITHUB_USERNAME is required");
+  if (!token && !preview) throw new Error("GITHUB_TOKEN is required (or use --preview to validate rendering)");
+  console.log(`Loaded ${asciiLines.length} ASCII-art lines from assets/profile-ascii.txt.`);
   console.log(preview ? "Generating preview assets…" : `Fetching GitHub data for ${username}…`);
   const data = preview ? { repos: [], publicRepos: 0, stars: 0, totalCommits: 0, accountYears: 0, year: new Date().getUTCFullYear(), contributions: { totalCommitContributions: 0, totalPullRequestContributions: 0, totalIssueContributions: 0, totalPullRequestReviewContributions: 0 } } : await getGitHubData();
   const loc = preview ? { added: 0, removed: 0, analysed: 0 } : await calculateLoc(data.repos);
   await mkdir("assets", { recursive: true });
-  await Promise.all([writeFile("assets/profile-light.svg", svg("light", data, loc)), writeFile("assets/profile-dark.svg", svg("dark", data, loc))]);
+  await Promise.all([writeFile("assets/profile-light.svg", svg("light", data, loc, asciiLines)), writeFile("assets/profile-dark.svg", svg("dark", data, loc, asciiLines))]);
   console.log(`Wrote both themes; ${data.publicRepos} repositories, ${loc.analysed} analysed for LOC.`);
 }
 
