@@ -125,28 +125,65 @@ async function calculateLoc(repos) {
 function svg(theme, data, loc) {
   const dark = theme === "dark";
   const c = dark
-    ? { bg: "#0d1117", card: "#161b22", border: "#30363d", text: "#e6edf3", muted: "#8b949e", accent: "#58a6ff", green: "#3fb950", yellow: "#d29922" }
-    : { bg: "#f6f8fa", card: "#ffffff", border: "#d0d7de", text: "#1f2328", muted: "#656d76", accent: "#0969da", green: "#1a7f37", yellow: "#9a6700" };
-  const s = (x, y, label, value) => `<text x="${x}" y="${y}" class="label">${xml(label)}</text><text x="${x + (x < 700 ? 190 : 142)}" y="${y}" class="value">${xml(value)}</text>`;
+    ? { page: "#0d1117", panel: "#151b23", border: "#222b36", text: "#c9d1d9", muted: "#748496", value: "#a8d8ff", accent: "#ff9d3d", green: "#39d353", red: "#ff5c57" }
+    : { page: "#f3f4f6", panel: "#ffffff", border: "#d8dee4", text: "#30363d", muted: "#8c959f", value: "#0969da", accent: "#bc4c00", green: "#1a7f37", red: "#cf222e" };
   const contributions = data.contributions;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Saad Hassan GitHub profile and statistics">
-  <style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.label{fill:${c.muted};font-size:15px}.value{fill:${c.text};font-size:15px}.heading{fill:${c.accent};font-size:16px;font-weight:700}.ascii{fill:${c.green};font-size:18px;font-weight:700}.rule{stroke:${c.border};stroke-width:1}</style>
-  <rect width="1200" height="720" fill="${c.bg}"/><rect x="25" y="25" width="1150" height="670" rx="16" fill="${c.card}" stroke="${c.border}" stroke-width="2"/>
-  <circle cx="55" cy="57" r="7" fill="#ff5f56"/><circle cx="78" cy="57" r="7" fill="#ffbd2e"/><circle cx="101" cy="57" r="7" fill="#27c93f"/>
-  <text x="600" y="63" text-anchor="middle" fill="${c.muted}" font-size="14">${xml(username.toLowerCase())}@github — profile</text>
-  <line x1="25" y1="84" x2="1175" y2="84" class="rule"/>
-  <text x="58" y="120" fill="${c.muted}" font-size="13">SaadHassan / README.md</text>
-  <g class="ascii"><text x="65" y="190">┌──────────────────┐</text><text x="65" y="220">│  &lt; SAAD /&gt;       │</text><text x="65" y="250">│                  │</text><text x="65" y="280">│  { build: ship } │</text><text x="65" y="310">│  [■■■■■■■■■■]  ✓ │</text><text x="65" y="340">└──────────────────┘</text></g>
-  <text x="65" y="395" fill="${c.accent}" font-size="20" font-weight="700">Saad Hassan</text><text x="65" y="423" fill="${c.muted}" font-size="14">${xml(username)}</text>
-  <text x="385" y="155" class="heading">PROFILE</text><line x1="385" y1="169" x2="1128" y2="169" class="rule"/>
-  ${s(385,200,"Role","Full-Stack / Backend Software Engineer")}${s(385,230,"Focus","TypeScript, Node.js, React, PostgreSQL")}${s(385,260,"Specialty","MERN Stack and AI Integration")}${s(385,290,"Company","Layer7 Solutions")}${s(385,320,"Education","BS Computer Science — GIKI")}${s(385,350,"Location","Lahore, Pakistan")}
-  <text x="385" y="395" class="heading">CURRENT WORK</text><line x1="385" y1="409" x2="1128" y2="409" class="rule"/>
-  ${s(385,440,"Project","NexCubator")}${s(385,470,"Learning","AWS Solutions Architect")}${s(385,500,"Available for","Backend and Full-Stack opportunities")}
-  <text x="65" y="520" class="heading">OPEN SOURCE</text><line x1="65" y1="534" x2="340" y2="534" class="rule"/>
-  <text x="65" y="563" class="value">Prisma ORM · PostgreSQL</text><text x="65" y="590" class="value">Chromium</text><text x="65" y="625" class="label">Databases · distributed systems</text><text x="65" y="650" class="label">cloud · open source</text>
-  <text x="385" y="545" class="heading">GITHUB STATISTICS</text><line x1="385" y1="559" x2="1128" y2="559" class="rule"/>
-  ${s(385,590,"Repositories",fmt(data.publicRepos))}${s(385,620,"Stars received",fmt(data.stars))}${s(385,650,"Default-branch commits",fmt(data.totalCommits))}${s(780,590,`${data.year} commits`,fmt(contributions.totalCommitContributions))}${s(780,620,"PRs / issues",`${fmt(contributions.totalPullRequestContributions)} / ${fmt(contributions.totalIssueContributions)}`)}${s(780,650,"PR reviews",fmt(contributions.totalPullRequestReviewContributions))}
-  <text x="385" y="678" class="label">Account age: ${xml(`${data.accountYears} years`)}</text><text x="780" y="678" fill="${c.yellow}" font-size="14">Lines of Code: ${fmt(loc.added)}++ / ${fmt(loc.removed)}-- ≈</text>
+  const row = (y, label, value, valueClass = "value") => {
+    const dots = "·".repeat(Math.max(2, 62 - label.length - String(value).length));
+    return `<text x="448" y="${y}" class="row"><tspan class="key">${xml(label)}:</tspan><tspan class="dots"> ${dots} </tspan><tspan class="${valueClass}">${xml(value)}</tspan></text>`;
+  };
+  const section = (y, title) => `<text x="430" y="${y}" class="section">- ${xml(title)}  ${"─".repeat(Math.max(3, 61 - title.length))}</text>`;
+  const art = [
+    "             .----------------.",
+    "            / .--------------. \\",
+    "           / /                \\ \\",
+    "          | |    S A A D       | |",
+    "          | |                  | |",
+    "          | |   > build_       | |",
+    "          | |   compiling...   | |",
+    "          | |   [########] ok  | |",
+    "          | |                  | |",
+    "           \\ \\________________/ /",
+    "            '------------------'",
+    "                 _|  |_",
+    "              .-'      '-.",
+    "             /____________\\",
+    "",
+    "       _____                 _",
+    "      / ____|               | |",
+    "     | (___   __ _  __ _  __| |",
+    "      \\___ \\ / _` |/ _` |/ _` |",
+    "      ____) | (_| | (_| | (_| |",
+    "     |_____/ \\__,_|\\__,_|\\__,_|",
+    "",
+    `         ${username.toLowerCase()}@github`,
+  ];
+  const artSvg = art.map((line, index) => `<text x="35" y="${42 + index * 22}" class="ascii">${xml(line)}</text>`).join("");
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="584" viewBox="0 0 1080 584" role="img" aria-label="Saad Hassan profile and GitHub statistics in a terminal system-information layout">
+  <style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.ascii{fill:${c.text};font-size:14px;white-space:pre}.row{font-size:16px}.key{fill:${c.accent}}.dots{fill:${c.muted}}.value{fill:${c.value}}.green{fill:${c.green}}.red{fill:${c.red}}.section{fill:${c.text};font-size:16px}</style>
+  <rect width="1080" height="584" fill="${c.page}"/><rect x="8" y="7" width="1058" height="570" rx="17" fill="${c.panel}" stroke="${c.border}"/>
+  ${artSvg}
+  <text x="430" y="39" class="section">${xml(username.toLowerCase())}@github  ${"─".repeat(48)}</text>
+  ${row(67,"Role","Full-Stack / Backend Software Engineer")}
+  ${row(91,"Focus","TypeScript, Node.js, React, PostgreSQL")}
+  ${row(115,"Specialty","MERN Stack and AI Integration")}
+  ${row(139,"Company","Layer7 Solutions")}
+  ${row(163,"Education","BS Computer Science — GIKI")}
+  ${row(187,"Location","Lahore, Pakistan")}
+  ${section(226,"Current Work")}
+  ${row(254,"Project","NexCubator")}
+  ${row(278,"Learning","AWS Solutions Architect")}
+  ${row(302,"Availability","Backend and Full-Stack opportunities")}
+  ${row(326,"Open Source","Prisma ORM, PostgreSQL, Chromium")}
+  ${row(350,"Interests","Databases, distributed systems, cloud")}
+  ${section(389,"GitHub Stats")}
+  ${row(417,"Public Repos",fmt(data.publicRepos))}
+  ${row(441,"Stars Received",fmt(data.stars))}
+  ${row(465,"Default-Branch Commits",fmt(data.totalCommits))}
+  ${row(489,`${data.year} Contributions`,`${fmt(contributions.totalCommitContributions)} commits · ${fmt(contributions.totalPullRequestContributions)} PRs · ${fmt(contributions.totalIssueContributions)} issues`)}
+  ${row(513,"PR Reviews",fmt(contributions.totalPullRequestReviewContributions))}
+  ${row(537,"Account Age",`${fmt(data.accountYears)} years`)}
+  <text x="448" y="561" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">${fmt(loc.added)}</tspan><tspan class="green">++</tspan><tspan class="value"> / ${fmt(loc.removed)}</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
 </svg>\n`;
 }
 
