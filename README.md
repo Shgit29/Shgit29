@@ -1,54 +1,17 @@
-<div align="center">
-  <img height="150" src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" />
-</div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/profile-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/profile-light.svg">
+  <img alt="Saad Hassan's GitHub profile: full-stack and backend software engineer" src="assets/profile-light.svg" width="100%">
+</picture>
 
-<h1 align="center">Hey there 👋 I'm Saad Hassan</h1>
-<h3 align="center">Full Stack Developer | MERN Stack | AI Integration</h3>
+<!--
+  The statistics above are refreshed daily by .github/workflows/update-profile.yml.
+  “Lines of Code” is an approximate Git-based total: squash merges, changed author
+  identities, rewritten history, clone-depth limits, and private repositories can
+  make it differ from a lifetime total.
+-->
 
-<div align="center">
-  <a href="https://www.linkedin.com/in/saadh4/">
-    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&style=for-the-badge" height="25" alt="LinkedIn logo" />
-  </a>
-  <a href="https://github.com/Shgit29">
-    <img src="https://img.shields.io/static/v1?message=GitHub&logo=github&label=&color=181717&logoColor=white&style=for-the-badge" height="25" alt="GitHub logo" />
-  </a>
-</div>
-
----
-
-### 👨‍💻 About Me
-
-Building scalable full-stack web apps with MERN and AI integration, delivering clean, efficient, and practical solutions.
-
----
-
-### 🚀 My Stats
-
-<table align="center">
-  <tr>
-    <td>
-      <img src="https://streak-stats.demolab.com?user=Shgit29&locale=en&mode=daily&theme=dark&hide_border=false&border_radius=5&order=3" width="400" alt="streak graph" />
-    </td>
-    <td>
-      <img src="https://github-readme-stats.vercel.app/api?username=Shgit29&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" width="400" alt="stats graph" />
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Shgit29&locale=en&hide_title=false&layout=compact&card_width=400&langs_count=5&theme=dracula&hide_border=false" width="400" alt="languages graph" />
-    </td>
-  </tr>
-</table>
-
----
-
-### 📫 Connect with Me
-
-<div align="center">
-  <a href="https://www.linkedin.com/in/saadh4/">
-    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="LinkedIn logo" />
-  </a>
-  <a href="https://github.com/Shgit29">
-    <img src="https://img.shields.io/static/v1?message=GitHub&logo=github&label=&color=181717&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="GitHub logo" />
-  </a>
-</div>
+<p align="center">
+  <a href="https://www.linkedin.com/in/saadh4/">LinkedIn</a> ·
+  <a href="https://github.com/Shgit29">GitHub</a>
+</p>
