@@ -170,7 +170,7 @@ function svg(theme, data, loc, asciiLines) {
   <style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.ascii{fill:${c.text};white-space:pre}.row{font-size:16px}.key{fill:${c.accent}}.dots{fill:${c.muted}}.value{fill:${c.value}}.green{fill:${c.green}}.red{fill:${c.red}}.section{fill:${c.text};font-size:16px}</style>
   <rect width="1080" height="584" fill="${c.page}"/><rect x="8" y="7" width="1058" height="570" rx="17" fill="${c.panel}" stroke="${c.border}"/>
   ${artSvg}
-  <text x="430" y="39" class="section">${xml(username.toLowerCase())}@github  ${"─".repeat(48)}</text>
+  <text x="430" y="39" class="section">Saad Hassan  ${"─".repeat(49)}</text>
   ${row(67,"Role","Full-Stack / Backend Software Engineer")}
   ${row(91,"Focus","TypeScript, Node.js, React, PostgreSQL")}
   ${row(115,"Specialty","MERN Stack and AI Integration")}
@@ -202,9 +202,14 @@ async function main() {
   console.log(preview ? "Generating preview assets…" : `Fetching GitHub data for ${username}…`);
   const data = preview ? { repos: [], publicRepos: 0, stars: 0, totalCommits: 0, accountYears: 0, year: new Date().getUTCFullYear(), contributions: { totalCommitContributions: 0, totalPullRequestContributions: 0, totalIssueContributions: 0, totalPullRequestReviewContributions: 0 } } : await getGitHubData();
   const loc = preview ? { added: 0, removed: 0, analysed: 0 } : await calculateLoc(data.repos);
-  await mkdir("assets", { recursive: true });
-  await Promise.all([writeFile("assets/profile-light.svg", svg("light", data, loc, asciiLines)), writeFile("assets/profile-dark.svg", svg("dark", data, loc, asciiLines))]);
-  console.log(`Wrote both themes; ${data.publicRepos} repositories, ${loc.analysed} analysed for LOC.`);
+  // Preview output must never replace the live, workflow-generated statistics.
+  const outputDir = preview ? join(tmpdir(), "github-profile-preview") : "assets";
+  await mkdir(outputDir, { recursive: true });
+  await Promise.all([
+    writeFile(join(outputDir, "profile-light.svg"), svg("light", data, loc, asciiLines)),
+    writeFile(join(outputDir, "profile-dark.svg"), svg("dark", data, loc, asciiLines)),
+  ]);
+  console.log(`Wrote both themes to ${outputDir}; ${data.publicRepos} repositories, ${loc.analysed} analysed for LOC.`);
 }
 
 main().catch((error) => { console.error(error.stack || error.message); process.exitCode = 1; });

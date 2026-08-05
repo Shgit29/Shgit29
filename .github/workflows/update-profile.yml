@@ -1,6 +1,11 @@
 name: Update profile statistics
 
 on:
+  push:
+    paths:
+      - "scripts/generate-profile.js"
+      - "assets/profile-ascii.txt"
+      - ".github/workflows/update-profile.yml"
   schedule:
     - cron: "17 2 * * *"
   workflow_dispatch:
