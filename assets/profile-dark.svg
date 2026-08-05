@@ -16,11 +16,11 @@
   <text x="448" y="326" class="row"><tspan class="key">Open Source:</tspan><tspan class="dots"> ··················· </tspan><tspan class="value">Prisma ORM, PostgreSQL, Chromium</tspan></text>
   <text x="448" y="350" class="row"><tspan class="key">Interests:</tspan><tspan class="dots"> ················ </tspan><tspan class="value">Databases, distributed systems, cloud</tspan></text>
   <text x="430" y="389" class="section">- GitHub Stats  ─────────────────────────────────────────────────</text>
-  <text x="448" y="417" class="row"><tspan class="key">Public Repos:</tspan><tspan class="dots"> ················································· </tspan><tspan class="value">0</tspan></text>
+  <text x="448" y="417" class="row"><tspan class="key">Public Repos:</tspan><tspan class="dots"> ················································ </tspan><tspan class="value">13</tspan></text>
   <text x="448" y="441" class="row"><tspan class="key">Stars Received:</tspan><tspan class="dots"> ··············································· </tspan><tspan class="value">0</tspan></text>
-  <text x="448" y="465" class="row"><tspan class="key">Default-Branch Commits:</tspan><tspan class="dots"> ······································· </tspan><tspan class="value">0</tspan></text>
-  <text x="448" y="489" class="row"><tspan class="key">2026 Contributions:</tspan><tspan class="dots"> ················ </tspan><tspan class="value">0 commits · 0 PRs · 0 issues</tspan></text>
+  <text x="448" y="465" class="row"><tspan class="key">Default-Branch Commits:</tspan><tspan class="dots"> ····································· </tspan><tspan class="value">109</tspan></text>
+  <text x="448" y="489" class="row"><tspan class="key">2026 Contributions:</tspan><tspan class="dots"> ··············· </tspan><tspan class="value">22 commits · 4 PRs · 0 issues</tspan></text>
   <text x="448" y="513" class="row"><tspan class="key">PR Reviews:</tspan><tspan class="dots"> ··················································· </tspan><tspan class="value">0</tspan></text>
-  <text x="448" y="537" class="row"><tspan class="key">Account Age:</tspan><tspan class="dots"> ············································ </tspan><tspan class="value">0 years</tspan></text>
-  <text x="448" y="561" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">0</tspan><tspan class="green">++</tspan><tspan class="value"> / 0</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
+  <text x="448" y="537" class="row"><tspan class="key">Account Age:</tspan><tspan class="dots"> ············································ </tspan><tspan class="value">3 years</tspan></text>
+  <text x="448" y="561" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">2,321,493</tspan><tspan class="green">++</tspan><tspan class="value"> / 15,245</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
 </svg>
