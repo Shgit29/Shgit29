@@ -161,28 +161,28 @@ function svg(theme, data, loc, asciiLines) {
     : { page: "#f3f4f6", panel: "#ffffff", border: "#d8dee4", text: "#30363d", muted: "#8c959f", value: "#0969da", accent: "#bc4c00", green: "#1a7f37", red: "#cf222e" };
   const row = (y, label, value, valueClass = "value") => {
     const dots = "·".repeat(Math.max(2, 62 - label.length - String(value).length));
-    return `<text x="448" y="${y}" class="row"><tspan class="key">${xml(label)}:</tspan><tspan class="dots"> ${dots} </tspan><tspan class="${valueClass}">${xml(value)}</tspan></text>`;
+    return `<text x="428" y="${y}" class="row"><tspan class="key">${xml(label)}:</tspan><tspan class="dots"> ${dots} </tspan><tspan class="${valueClass}">${xml(value)}</tspan></text>`;
   };
-  const section = (y, title) => `<text x="430" y="${y}" class="section">- ${xml(title)}  ${"─".repeat(Math.max(3, 61 - title.length))}</text>`;
+  const section = (y, title) => `<text x="410" y="${y}" class="section">- ${xml(title)}  ${"─".repeat(Math.max(3, 61 - title.length))}</text>`;
   const artSvg = renderAsciiArt(asciiLines);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="584" viewBox="0 0 1080 584" role="img" aria-label="Saad Hassan profile and GitHub statistics in a terminal system-information layout">
   <style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.ascii{fill:${c.text};white-space:pre}.row{font-size:16px}.key{fill:${c.accent}}.dots{fill:${c.muted}}.value{fill:${c.value}}.green{fill:${c.green}}.red{fill:${c.red}}.section{fill:${c.text};font-size:16px}</style>
   <rect width="1080" height="584" fill="${c.page}"/><rect x="8" y="7" width="1058" height="570" rx="17" fill="${c.panel}" stroke="${c.border}"/>
   ${artSvg}
-  <text x="430" y="39" class="section">Saad Hassan  ${"─".repeat(49)}</text>
-  ${row(67,"Role","Full-Stack / Backend Software Engineer")}
-  ${row(91,"Focus","TypeScript, Node.js, React, PostgreSQL")}
-  ${row(115,"Specialty","MERN Stack and AI Integration")}
-  ${row(139,"Company","Layer7 Solutions")}
-  ${row(163,"Education","BS Computer Science — GIKI")}
-  ${section(211,"Current Work")}
-  ${row(239,"Availability","Backend and Full-Stack opportunities")}
-  ${row(263,"Open Source","Prisma ORM")}
-  ${row(287,"Interests","Databases, distributed systems, cloud")}
-  ${section(332,"GitHub Stats")}
-  ${row(360,"Default-Branch Commits",fmt(data.totalCommits))}
-  ${row(384,"Account Age",`${fmt(data.accountYears)} years`)}
-  <text x="448" y="408" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">${fmt(loc.added)}</tspan><tspan class="green">++</tspan><tspan class="value"> / ${fmt(loc.removed)}</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
+  <text x="410" y="39" class="section">Saad Hassan  ${"─".repeat(51)}</text>
+  ${row(75,"Role","Full-Stack / Backend Software Engineer")}
+  ${row(105,"Focus","TypeScript, Node.js, React, PostgreSQL")}
+  ${row(135,"Company","Layer7 Solutions")}
+  ${section(185,"Hobbies")}
+  ${row(215,"Aviation","AvGeek, Commercial Airplanes")}
+  ${row(245,"Sports & Gaming","Football, FIFA")}
+  ${section(295,"Current Work")}
+  ${row(325,"Availability","Backend and Full-Stack opportunities")}
+  ${row(355,"Open Source","Prisma ORM")}
+  ${row(385,"Interests","Databases, distributed systems, cloud")}
+  ${section(435,"GitHub Stats")}
+  ${row(465,"Account Age",`${fmt(data.accountYears)} years`)}
+  <text x="428" y="495" class="row"><tspan class="key">Lines of Code:</tspan><tspan class="dots"> ················· </tspan><tspan class="value">${fmt(loc.added)}</tspan><tspan class="green">++</tspan><tspan class="value"> / ${fmt(loc.removed)}</tspan><tspan class="red">--</tspan><tspan class="dots"> ≈</tspan></text>
 </svg>\n`;
 }
 
